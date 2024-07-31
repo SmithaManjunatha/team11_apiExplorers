@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "8c2bc9b3-1d13-4dee-97d9-e6d51e7c1b3a",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32668815",
+		"_collection_link": "https://web.postman.co/workspace/d0334863-9256-4f5f-8771-7628c87e74b7/collection/32668815-8c2bc9b3-1d13-4dee-97d9-e6d51e7c1b3a?action=share&source=collection_link&creator=32668815"
+	},
+	"item": [
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "Create Dietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"9876543210\",\r\n  \"DateOfBirth\": \"1976-07-26\",\r\n  \"Education\": \"Finance\",\r\n  \"Email\": \"allen@gmail.com\",\r\n  \"Firstname\": \"Allen\",\r\n  \"HospitalCity\": \"New York\",\r\n  \"HospitalName\": \"David\",\r\n  \"HospitalPincode\": \"765432\",\r\n  \"HospitalStreet\": \"567,Daisy lane\",\r\n  \"Lastname\": \"Steward\"\r\n}\r\n\r\n\r\n\t",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dietician Token Generation",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"password\": \"Purple76\",\r\n        \"userLoginEmail\": \"allen@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Morbidity",
+			"item": []
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Create Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticain_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\"FirstName\": \"boaz\",\r\n\"LastName\": \"erd\",\r\n\"ContactNumber\": \"6789504321\",\r\n\"Email\": \"boaz@gmail.com\",\r\n\"Allergy\": \"milk\",\r\n\"FoodPreference\": \"veg\",\r\n\"CuisineCategory\":\"indian\",\r\n\"DateOfBirth\": \"1980-02-14\"\r\n}\r\n\r\n\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Patient Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticain_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n\"FirstName\": \"boaz\",\r\n\"LastName\": \"erd\",\r\n\"ContactNumber\": \"6789504321\",\r\n\"Email\": \"boaz@gmail.com\",\r\n\"Allergy\": \"milk\",\r\n\"FoodPreference\": \"veg\",\r\n\"CuisineCategory\":\"indian\",\r\n\"DateOfBirth\": \"1980-02-14\"\r\n}\r\n\r\n\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": []
+		},
+		{
+			"name": "Admin Login",
+			"item": [
+				{
+					"name": "Admin Token Generation",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"test\",\r\n  \"userLoginEmail\": \"Team11@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
