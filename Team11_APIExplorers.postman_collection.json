@@ -1,0 +1,600 @@
+{
+	"info": {
+		"_postman_id": "8c2bc9b3-1d13-4dee-97d9-e6d51e7c1b3a",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32668815",
+		"_collection_link": "https://web.postman.co/workspace/Team11_APIExplorers_Jul24~d0334863-9256-4f5f-8771-7628c87e74b7/collection/32668815-8c2bc9b3-1d13-4dee-97d9-e6d51e7c1b3a?action=share&source=collection_link&creator=32668815"
+	},
+	"item": [
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "Create Dietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"9716952612\",\r\n  \"DateOfBirth\": \"1989-02-11\",\r\n  \"Education\": \"Finance\",\r\n  \"Email\": \"franco67@gmail.com\",\r\n  \"Firstname\": \"Franco\",\r\n  \"HospitalCity\": \"Wayne\",\r\n  \"HospitalName\": \"Chilton\",\r\n  \"HospitalPincode\": \"765432\",\r\n  \"HospitalStreet\": \"563,Daisy lane\",\r\n  \"Lastname\": \"Steward\"\r\n}\r\n\t",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dietician Token Generation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODU1MDQsImV4cCI6MTcyMjUxNDMwNH0.nc0SRKgJ7wiUMyr--uhIkacPGy70ALmhsj8s7CCQN0qNZbbL0RIrm_FHraEnPet_xV24cPnCqrsmLWw0_VuXuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Help77\",\r\n  \"userLoginEmail\": \"franco67@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Dietician",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"   console.log(pm.response.to.have.jsonBody);\r",
+									"\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"9736546220\",\r\n  \"DateOfBirth\": \"1976-06-21\",\r\n  \"Education\": \"Finance\",\r\n  \"Email\": \"franco2@gmail.com\",\r\n  \"Firstname\": \"Franco\",\r\n  \"HospitalCity\": \"Montvil\",\r\n  \"HospitalName\": \"Chilton\",\r\n  \"HospitalPincode\": \"076532\",\r\n  \"HospitalStreet\": \"563,Daisy lane\",\r\n  \"Lastname\": \"Steward\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve /Get Dietician",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Dietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNDgxNTc2LCJleHAiOjE3MjI1MTAzNzZ9.eLToYnePmlluwsOmeyn3xHM1L127Yww-KP1mvdcRQ1EgSnIszI2G2et_8XxBRHv9RGvkirZZdwr_H4R98hdAmw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Morbidity",
+			"item": [
+				{
+					"name": "Get all Morbidities ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Morbidity by Test name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity/TSH",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"TSH"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Create Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODM0NTIsImV4cCI6MTcyMjUxMjI1Mn0.P7jsdI4MCLNe-rQ6hHyXVf-ES-dQDPANZGPWWcztQWfdlbEhD8Wyaw4faGiSpz5rPQZv57SpUIj3HZwAa1mj3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "patientInfo",
+									"value": "{\"FirstName\": \"Al\",\n\"LastName\": \"Pascal\",\n\"ContactNumber\": \"9712345612\",\n\"Email\": \"alpascal@gmail.com\",\n\"Allergy\": \"soy\",\n\"FoodPreference\": \"Vegan\",\n\"CuisineCategory\":\"Indian\",\n\"DateOfBirth\": \"1986-02-14\"}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get/Retrieve Patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODM0NTIsImV4cCI6MTcyMjUxMjI1Mn0.P7jsdI4MCLNe-rQ6hHyXVf-ES-dQDPANZGPWWcztQWfdlbEhD8Wyaw4faGiSpz5rPQZv57SpUIj3HZwAa1mj3w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODU1MDQsImV4cCI6MTcyMjUxNDMwNH0.nc0SRKgJ7wiUMyr--uhIkacPGy70ALmhsj8s7CCQN0qNZbbL0RIrm_FHraEnPet_xV24cPnCqrsmLWw0_VuXuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "patientInfo",
+									"value": "{\"FirstName\": \"Al\",\n\"LastName\": \"Pascale\",\n\"ContactNumber\": \"9712345612\",\n\"Email\": \"alpascal@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"JAIN\",\n\"CuisineCategory\":\"Indian\",\n\"DateOfBirth\": \"1986-02-14\"}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/{{patientId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"{{patientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Existing patient Report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODU1MDQsImV4cCI6MTcyMjUxNDMwNH0.nc0SRKgJ7wiUMyr--uhIkacPGy70ALmhsj8s7CCQN0qNZbbL0RIrm_FHraEnPet_xV24cPnCqrsmLWw0_VuXuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": " patientInfo",
+									"value": "{\"FirstName\": \"Al\",\"LastName\": \"Pascale\",\n\"ContactNumber\": \"9712345612\",\n\"Email\": \"alpascal@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"JAIN\",\n\"CuisineCategory\":\"Indian\",\n\"DateOfBirth\": \"1986-02-14\"}",
+									"type": "text"
+								},
+								{
+									"key": "vitals",
+									"value": "{“Weight“ : 43, “Height” : 5.1,“Temperature” : 72,“SP” : 5,“DP” : 7}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/{{patientId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"{{patientId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODY4MzgsImV4cCI6MTcyMjUxNTYzOH0._tF3V0Lo6mAgF_rmNxvD-KhLwS-hQfNYFIIRJDxSZoHmeP2YNbVKjgwqXFfpxUjBDk5-aylncx2YxNBJhoRwuw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/{{patientId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"{{patientId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "{{baseurl}}/logoutdietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNDY4NzMxLCJleHAiOjE3MjI0OTc1MzF9.L2kf5ussYE6v-Xiaqt02Uws_C22mj2R3h6bjtQKvvDxd8txQOJyXDwrFQmhZF8G60YqBJzmYpv-LgTJ2QJY4BQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/logoutdietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"logoutdietician"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Login",
+			"item": [
+				{
+					"name": "Admin Token Generation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//To get response body -> \"token\" value\r",
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"token_value = bodyData.token;\r",
+									"\r",
+									"//To check in the console\r",
+									"console.log(\"Token: \" + token_value);\r",
+									"\r",
+									"//Setting token as global variable to use in collections\r",
+									"pm.globals.set(\"admin_token\", token_value);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//pm.collectionVariables.set(\"password\", pm.iterationData.get//(\"Password\"));\r",
+									"//pm.collectionVariables.set(\"userLoginEmail\", pm.iterationData.get//(\"User Login Email\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"test\",\r\n  \"userLoginEmail\": \"Team11@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "userLoginEmail",
+			"value": ""
+		}
+	]
+}
