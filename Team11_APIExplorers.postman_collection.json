@@ -1,0 +1,1061 @@
+{
+	"info": {
+		"_postman_id": "168949ac-e8ec-4df4-9cfd-60a78e29235c",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33413576",
+		"_collection_link": "https://team11apiexplorersjul24.postman.co/workspace/Team11_APIExplorers_Jul24~d0334863-9256-4f5f-8771-7628c87e74b7/collection/33413576-168949ac-e8ec-4df4-9cfd-60a78e29235c?action=share&source=collection_link&creator=33413576"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "admin login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//To get response body -> \"token\" value\r",
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"\r",
+									"console.log(\"Response \" + bodyData);\r",
+									"token_value = bodyData.token;\r",
+									"\r",
+									"//To check in the console\r",
+									"console.log(\"Admin Generated Token: \" + token_value);\r",
+									"\r",
+									"//Setting token as global variable to use in collections\r",
+									"pm.collectionVariables.set(\"adminToken\", token_value);\r",
+									"\r",
+									"//data validation\r",
+									"pm.test('Verified user signed in ', () => {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.token).to.eql(pm.collectionVariables.get('adminToken'));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Schema validation\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"token\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"type\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"loginUserEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"roles\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      ]\r",
+									"    },\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"token\",\r",
+									"    \"type\",\r",
+									"    \"userId\",\r",
+									"    \"loginUserEmail\",\r",
+									"    \"roles\",\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response contains valid JSON data\", () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.execution.setNextRequest(\"create new dietician\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"{{password}}\",\r\n  \"userLoginEmail\": \"{{userLoginEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dietician login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"In Dietician Token generation\");\r",
+									"\r",
+									"//Assigning Dietician Token to Collection Variables\r",
+									"\r",
+									"bodyData = pm.response.json();\r",
+									"console.log(bodyData);\r",
+									"pm.collectionVariables.set(\"dieticianToken\",bodyData.token);\r",
+									"\r",
+									"pm.execution.setNextRequest(\"update dietician\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"password\": \"{{dieticianPassword}}\",\r\n        \"userLoginEmail\": \"{{dieticianLoginEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patient login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"patientToken\", bodyData.token);\r",
+									"pm.collectionVariables.set(\"patientLoginEmail\", bodyData.loginUserEmail);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"{{patientPassword}}\",\r\n  \"userLoginEmail\": \"{{patientLoginEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/logoutdietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"logoutdietician"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "create new dietician",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"In Create Dietician\");\r",
+									"// Assigning userloginEmail and password to collection Variables\r",
+									"\r",
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"dieticianLoginEmail\", bodyData.Email);\r",
+									"pm.collectionVariables.set(\"dieticianPassword\", bodyData.loginPassword);\r",
+									"\r",
+									"dieticianId1 = pm.collectionVariables.get(\"dieticianId1\");\r",
+									"\r",
+									"if (!dieticianId1){\r",
+									"    pm.collectionVariables.set(\"dieticianId1\", bodyData.id);    \r",
+									"    \r",
+									"}else {\r",
+									"        pm.collectionVariables.set(\"dieticianId2\" , bodyData.id);   \r",
+									"}\r",
+									"\r",
+									"pm.execution.setNextRequest(\"dietician login\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Variable generation\r",
+									"\r",
+									"var moment = require('moment');\r",
+									"\r",
+									"contactNumber = pm.iterationData.get(\"contactNumber\");\r",
+									"dateOfBirth = pm.iterationData.get(\"dateOfBirth\");\r",
+									"email = pm.iterationData.get(\"email\");\r",
+									"\r",
+									"if(!contactNumber){\r",
+									"\r",
+									"pm.variables.set(\"contactNumber\", pm.variables.replaceIn('{{$randomPhoneNumber}}').replaceAll(\"-\",\"\"));\r",
+									"}\r",
+									"\r",
+									"if(!dateOfBirth){\r",
+									"//pm.variables.set(\"dateOfBirth\" , moment().format(\"YYYY-MM-DD\"));\r",
+									"pm.variables.set(\"dateOfBirth\", pm.variables.replaceIn('{{$isoTimestamp}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									"if(!email){\r",
+									"pm.variables.set(\"email\" , pm.variables.replaceIn('{{$randomEmail}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									"//if(pm.collectionVariables.get(\"createDietician\")){\r",
+									"  //  pm.variables.set()\r",
+									"\r",
+									"//}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\":  \"{{email}}\",\r\n  \"Firstname\": \"{{firstName}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update dietician",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"pm.execution.setNextRequest(\"patient login\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId1}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "create new patient",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*pm.request.body.mode = \"form-data\";\r",
+									"console.log(\"In Patient Prescript\");\r",
+									"\r",
+									"pm.request.addHeader(\"Authorization\", \"Bearer \" + pm.collectionVariables.get(\"dieticianToken\"));\r",
+									"\r",
+									"pm.request.url = pm.environment.get(\"baseurl\") + '/patient';\r",
+									"\r",
+									"pm.request.body.formdata.add({\"key\":\"file\",\"type\":\"file\",\"src\": \"6wGhos2ZQ/HyperThyroid_Report_final.pdf\"\r",
+									"});\r",
+									"pm.iterationData.get(\"createPatient\").forEach(patient => {\r",
+									"    pm.request.body.formdata.add({\"key\":\"patientInfo\",\"type\":\"text\",\"value\": patient\r",
+									"});\r",
+									"console.log(pm.request);\r",
+									"pm.sendRequest(pm.request,(res,err)=>{\r",
+									"    console.log(res);\r",
+									"    console.log(err);\r",
+									"});\r",
+									"}); */"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"In Create Patient\");\r",
+									"// Assigning userloginEmail and password to collection Variables\r",
+									"\r",
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"patientLoginEmail\", bodyData.Email);\r",
+									"//pm.collectionVariables.set(\"dieticianPassword\", \"test\");\r",
+									"\r",
+									"patientId1 = pm.collectionVariables.get(\"patientId1\");\r",
+									"\r",
+									"if (!patientId1){\r",
+									"    pm.collectionVariables.set(\"patientId1\", bodyData.patientId);    \r",
+									"    \r",
+									"}else {\r",
+									"        pm.collectionVariables.set(\"patientId2\" , bodyData.patientId);   \r",
+									"}\r",
+									"\r",
+									"pm.execution.setNextRequest(\"patient login\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "sample pdf file",
+									"type": "file",
+									"src": "/C:/Febi/NumpyNinja/Hackathon/DieticianPostmanHackathon_Jul24/Jul-Aug2024-Dietician API Hackathon/Sample reports/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"boaz\",\n\"LastName\": \"roo\",\n\"ContactNumber\": \"9789507001\",\n\"Email\": \"{{$randomEmail}}\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1970-01-14\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update patient by patient id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Febi/NumpyNinja/Hackathon/DieticianPostmanHackathon_Jul24/Jul-Aug2024-Dietician API Hackathon/Sample reports/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"boaz\",\n\"LastName\": \"roy\",\n\"ContactNumber\": \"9789597001\",\n\"Email\": \"Kyla35@hotmail.com\",\n\"Allergy\": \"Milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1970-01-14\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/{{patientId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"{{patientId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add new reports with/without vitals for existing patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Febi/NumpyNinja/Hackathon/DieticianPostmanHackathon_Jul24/Jul-Aug2024-Dietician API Hackathon/Sample reports/Diabetic and Hemogram Test_Thyrocare lab.pdf.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"boaz\",\n\"LastName\": \"roo\",\n\"ContactNumber\": \"9789900001\",\n\"Email\": \"Waldo45@yahoo.com\",\n\"Allergy\": \"soy\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1970-01-14\"\n}",
+									"type": "text"
+								},
+								{
+									"key": "vitals",
+									"value": "{ \"Weight\": 96.0,\n\"Height\": 40.0,\n\"Temperature\": 99.0,\n\"SP\": 9,\n\"DP\": 8\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/newReports/{{patientId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"newReports",
+								"{{patientId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve patient file by fileId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/viewFile/{{morbidityFileId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"viewFile",
+								"{{morbidityFileId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get patients morbidity details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/{{patientId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"{{patientId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all patients",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete  by patient id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/{{patientId2}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"{{patientId2}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Morbidity Controller",
+			"item": [
+				{
+					"name": "get all morbidities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"bodyData = pm.response.json();\r",
+									"//console\r",
+									"pm.collectionVariables.set(\"morbidityName\", bodyData[2].morbidityTestName);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get morbidity name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"{{morbidityName}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dietician Controller",
+			"item": [
+				{
+					"name": "get all morbidities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"bodyData = pm.response.json();\r",
+									"//console\r",
+									"pm.collectionVariables.set(\"morbidityName\", bodyData[2].morbidityTestName);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get morbidity name",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"{{morbidityName}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient Controller",
+			"item": [
+				{
+					"name": "get patients morbidity details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/{{patientId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"{{patientId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve patient file by fileId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticianToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/viewFile/{{morbidityFileId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"viewFile",
+								"{{morbidityFileId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"In Collection Pre-request\");\r",
+					"console.log(pm.iterationData);\r",
+					"console.log(pm.collectionVariables);\r",
+					"console.log(\"In Collection \" + pm.collectionVariables.get(\"adminToken\"));\r",
+					"if(pm.collectionVariables.get(\"adminToken\")==\"\"|| pm.collectionVariables.get(\"adminToken\" )== null){\r",
+					"    {\r",
+					"        console.log(\"Calling Generated Admin Token\");\r",
+					"        const getTokenReq = {\r",
+					"            url: pm.environment.get(\"baseurl\") + '/login',\r",
+					"            method: 'POST',\r",
+					"            header: {'Content-Type': 'application/json'},\r",
+					"            body: {\r",
+					"                mode:'raw',\r",
+					"                raw: JSON.stringify({\r",
+					"                    \"userLoginEmail\": pm.environment.get(\"userLoginEmail\"), \r",
+					"                    \"password\": pm.environment.get(\"password\") \r",
+					"                    \r",
+					"                })\r",
+					"            }\r",
+					"        };\r",
+					"        console.log( getTokenReq.url);\r",
+					"    pm.sendRequest(getTokenReq,function(err, response){\r",
+					"        if(err){\r",
+					"            console.log(err)\r",
+					"        }else{\r",
+					"            console.log(\"Collection Response Token: \" + response.json().token)\r",
+					"            pm.collectionVariables.set(\"adminToken\",response.json().token);\r",
+					"        }\r",
+					"    });\r",
+					"    }\r",
+					"\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": ""
+		},
+		{
+			"key": "dieticianToken",
+			"value": ""
+		},
+		{
+			"key": "patientToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "dieticianLoginEmail",
+			"value": ""
+		},
+		{
+			"key": "dieticianPassword",
+			"value": ""
+		},
+		{
+			"key": "dieticianId1",
+			"value": ""
+		},
+		{
+			"key": "dieticianId2",
+			"value": ""
+		},
+		{
+			"key": "patientLoginEmail",
+			"value": ""
+		},
+		{
+			"key": "patientPassword",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "patientId1",
+			"value": ""
+		},
+		{
+			"key": "patientId2",
+			"value": ""
+		},
+		{
+			"key": "morbidityName",
+			"value": ""
+		}
+	]
+}
