@@ -1,0 +1,849 @@
+{
+	"info": {
+		"_postman_id": "27d88485-ca44-4404-ad60-b886d9fd9079",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33908325",
+		"_collection_link": "https://team11apiexplorersjul24.postman.co/workspace/Team11_APIExplorers_Jul24~d0334863-9256-4f5f-8771-7628c87e74b7/collection/33908325-27d88485-ca44-4404-ad60-b886d9fd9079?action=share&source=collection_link&creator=33908325"
+	},
+	"item": [
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "Create Dietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"ContactNumber\": \"6543217660\",\r\n\"DateOfBirth\": \"2000-10-26\",\r\n\"Education\": \"Finance\",\r\n\"Email\": \"nidhi@gmail.com\",\r\n\"Firstname\": \"Steve\",\r\n\"HospitalCity\": \"Mane\",\r\n\"HospitalName\": \"nch\",\r\n\"HospitalPincode\": \"600056\",\r\n\"HospitalStreet\": \"15 West street\",\r\n\"Lastname\": \"Alex\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Morbidity",
+			"item": [
+				{
+					"name": "Retrieve All Morbidities With Admin Token Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities using Morbidity-No Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve All Morbidities -Invalid URL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities using Morbidity Name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNjIxNTY5LCJleHAiOjE3MjI2NTAzNjl9.6BBWUGJbLBWrE9TErDEJ3pkYPLVUvqQpZbORH3sfdTaJf3ZRtXEJpopKQwoVzmfgh4s3E37bVCSzepIVYvJoJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dietician-july-api-hackathon-80f2590665cc.herokuapp.com/dietician/morbidity/TSH",
+							"protocol": "https",
+							"host": [
+								"dietician-july-api-hackathon-80f2590665cc",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dietician",
+								"morbidity",
+								"TSH"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dietician Controller",
+			"item": [
+				{
+					"name": "Retrieve Morbidities for Dietician",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities for Dietician with Patient Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{patient_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities for Dietician-Invalid Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNjIxNTY5LCJleHAiOjE3MjI2NTAzNjl9.6BBWUGJbLBWrE9TErDEJ3pkYPLVUvqQpZbORH3sfdTaJf3ZRtXEJpopKQwoVzmfgh4s3E37bVCSzepIVYvJoJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities for Dietician-No Auth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities  for dietician using Testname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity/TSH",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"TSH"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities  for dietician using Wrong Testname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity/Diabetes",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"Diabetes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidities  for dietician using Partial Testname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity/Plasma",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity",
+								"Plasma"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient Controller",
+			"item": [
+				{
+					"name": "Retrieve All Morbidities With Dietician Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dietician_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve All Morbidities with Patient Token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{patient_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Morbidity using TestName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/morbidity",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"morbidity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "Create Patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticain_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "sample pdf file",
+									"type": "file",
+									"src": "6wGhos2ZQ/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"boaz\",\n\"LastName\": \"erd\",\n\"ContactNumber\": \"6789504321\",\n\"Email\": \"boaz@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-02-14\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Patient Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{dieticain_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "sample pdf file",
+									"type": "file",
+									"src": "95-1y2bSp/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"boaz\",\n\"LastName\": \"erd\",\n\"ContactNumber\": \"6789504321\",\n\"Email\": \"boaz@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-02-14\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"test\",\r\n  \"userLoginEmail\": \"Team11@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dietician-july-api-hackathon-80f2590665cc.herokuapp.com/dietician/login",
+							"protocol": "https",
+							"host": [
+								"dietician-july-api-hackathon-80f2590665cc",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"dietician",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dietician Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"Fish44\",\r\n    \"userLoginEmail\": \"nidhi@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patient Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"In Pre-request\");\r",
+					"console.log( pm.collectionVariables.get(\"adminToken\"));\r",
+					"//  let username = data[\"Create User\"]['userName'];\r",
+					"//  let password = data[\"Create User\"]['psw'];\r",
+					"if(pm.environment.get(\"adminToken\")==\"\"|| pm.collectionVariables.get(\"adminToken\" )== null){\r",
+					"    {\r",
+					"        console.log(\"Calling Generated Admin Token\");\r",
+					"        const getTokenReq = {\r",
+					"            url: pm.environment.get(\"baseurl\") + '/login',\r",
+					"            method: 'POST',\r",
+					"            header: {'Content-Type': 'application/json'},\r",
+					"            body: {\r",
+					"                mode:'raw',\r",
+					"                raw: JSON.stringify({\r",
+					"                    \"userName\": \"{{userName}}\",\r",
+					"                    \"password\": \"{{psw}}\"\r",
+					"                    //   \"userName\": \"{{username}}\",\r",
+					"                    //   \"password\": \"{{password}}\" \r",
+					"                    \r",
+					"                })\r",
+					"            }\r",
+					"        };\r",
+					"        console.log( getTokenReq.url);\r",
+					"    pm.sendRequest(getTokenReq,function(err, response){\r",
+					"        if(err){\r",
+					"            console.log(err)\r",
+					"        }else{\r",
+					"            console.log(\"Token: \" + response.json().token)\r",
+					"            pm.collectionVariables.set(\"adminToken\",response.json().token);\r",
+					"         //   pm.environment.set(\"accessTokenExpiry\",response.json().expires);\r",
+					"        }\r",
+					"    });\r",
+					"    }\r",
+					"\r",
+					"}"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": ""
+		}
+	]
+}
