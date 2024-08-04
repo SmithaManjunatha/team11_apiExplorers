@@ -1,0 +1,625 @@
+{
+	"info": {
+		"_postman_id": "37968594-8b05-4bf8-a5ea-2548868acad6",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37274055",
+		"_collection_link": "https://team11apiexplorersjul24.postman.co/workspace/d0334863-9256-4f5f-8771-7628c87e74b7/collection/37274055-37968594-8b05-4bf8-a5ea-2548868acad6?action=share&source=collection_link&creator=37274055"
+	},
+	"item": [
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "Ccreate Ddietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_tok}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{userLoginEmail}}\",\r\n  \"Firstname\": \"{{firstName}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create dietician 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_tok}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{userLoginEmail}}\",\r\n  \"Firstname\": \"{{firstName}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastName}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dietician token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Truth79\",\r\n  \"userLoginEmail\": \"goodwill@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update dietician",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNjEzNTUxLCJleHAiOjE3MjI2NDIzNTF9.6yzx1ou5tGjpYGyx8N1rx1O7lPxB5BcOPwBVTzr9XxQ8ynauM83FHKNtVUXrZLkb4VCCqa0ybtl7WE3AfvIa5Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"9012345145\",\r\n  \"DateOfBirth\": \"1979-07-21\",\r\n  \"Education\": \"Engineer\",\r\n  \"Email\": \"Reshu@gmail.com\",\r\n  \"Firstname\": \"Allen\",\r\n  \"HospitalCity\": \"New York\",\r\n  \"HospitalName\": \"David\",\r\n  \"HospitalPincode\": \"765432\",\r\n  \"HospitalStreet\": \"567,Daisy lane\",\r\n  \"Lastname\": \"John\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/708",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"708"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Morbidity",
+			"item": []
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "create patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb29kd2lsbEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2ODE4MjUsImV4cCI6MTcyMjcxMDYyNX0.2gyvHOHCTFMfJ0QfOR4eiLoene3mHZCCmHoMOvZ9y2IXt1x21LgXd7SQwOjWeMP5WDH_O9npMfPat_Un_PjI-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "sample file",
+									"type": "file",
+									"src": "/C:/Users/zaree/Downloads/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"Jack\",\n\"LastName\": \"Watt\",\n\"ContactNumber\": \"6789504353\",\n\"Email\": \"hana@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-04-14\"\n}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create patient 2",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnb29kd2lsbEBnbWFpbC5jb20iLCJpYXQiOjE3MjI3MDYxNDEsImV4cCI6MTcyMjczNDk0MX0.5aljfg0hAqHDNKR76ZFYykXT_kUNMywDz1AnyuSYC-ibuqCKMYP-iFipRat2fAJnQ2jCdjmlDrebE5mdGGpfRw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "sample file",
+									"type": "file",
+									"src": "/C:/Users/zaree/Downloads/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patientInfo",
+									"value": "{ \"FirstName\": \"Jack\",\n\"LastName\": \"Watt\",\n\"ContactNumber\": \"6789504351\",\n\"Email\": \"mary@gmail.com\",\n\"Allergy\": \"milk\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-04-14\"\n}",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update  patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diet_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/zaree/Downloads/HyperThyroid_Report_final.pdf"
+								},
+								{
+									"key": "patient info",
+									"value": "{ \"FirstName\": \"Jack\",\n\"LastName\": \"watt\",\n\"ContactNumber\": \"5789504351\",\n\"Email\": \"mary@gmail.com\",\n\"Allergy\": \"egg\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-04-14\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/523",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"523"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve patient file by field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diet_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/viewFile/{{file_id}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"viewFile",
+								"{{file_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patient morbidity details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diet_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/testReports/207\n\n",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"testReports",
+								"207\n\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all patients",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diet_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by patient Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/patient/patientId",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"patientId"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update patient with new reports",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{diet_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/zaree/Downloads/Diabetic and Hemogram Test_Thyrocare lab.pdf.pdf"
+								},
+								{
+									"key": "patient_info",
+									"value": "{ \"FirstName\": \"Jack\",\n\"LastName\": \"watt\",\n\"ContactNumber\": \"5789504351\",\n\"Email\": \"egg@gmail.com\",\n\"Allergy\": \"egg\",\n\"FoodPreference\": \"VEGAN\",\n\"CuisineCategory\":\"indian\",\n\"DateOfBirth\": \"1980-04-14\"\n}",
+									"type": "text"
+								},
+								{
+									"key": "vitals",
+									"value": "{ \"Weight\": 100.9,\n\"Height\": 40.0,\n\"Temperature\": 98.0,\n\"SP\": 8,\n\"DP\": 8\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseurl}}/patient/newReports/207",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"patient",
+								"newReports",
+								"207"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//To get response body -> \"token\" value\r",
+									"bodyData = pm.response.json();\r",
+									"\r",
+									"console.log(\"Response \" + bodyData);\r",
+									"token_value = bodyData.token;\r",
+									"\r",
+									"//To check in the console\r",
+									"console.log(\"Admin Generated Token: \" + token_value);\r",
+									"\r",
+									"//Setting token as global variable to use in collections\r",
+									"pm.collectionVariables.set(\"adminToken\", token_value);\r",
+									"\r",
+									"//data validation\r",
+									"pm.test('Verified user signed in ', () => {\r",
+									"    const response = pm.response.json();\r",
+									"    pm.expect(response.token).to.eql(pm.collectionVariables.get('adminToken'));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//Schema validation\r",
+									"\r",
+									"const schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"token\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"type\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"loginUserEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"roles\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      ]\r",
+									"    },\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"token\",\r",
+									"    \"type\",\r",
+									"    \"userId\",\r",
+									"    \"loginUserEmail\",\r",
+									"    \"roles\",\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"pm.test(\"Response contains valid JSON data\", () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"password\": \"{{Password}}\",\r\n  \"userLoginEmail\": \"{{UserEmail}}\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": ""
+		}
+	]
+}
