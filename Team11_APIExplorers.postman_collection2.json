@@ -27,7 +27,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"ContactNumber\": \"9716952612\",\r\n  \"DateOfBirth\": \"1989-02-11\",\r\n  \"Education\": \"Finance\",\r\n  \"Email\": \"franco67@gmail.com\",\r\n  \"Firstname\": \"Franco\",\r\n  \"HospitalCity\": \"Wayne\",\r\n  \"HospitalName\": \"Chilton\",\r\n  \"HospitalPincode\": \"765432\",\r\n  \"HospitalStreet\": \"563,Daisy lane\",\r\n  \"Lastname\": \"Steward\"\r\n}\r\n\t",
+							"raw": "{\r\n  \"ContactNumber\": \"9716952682\",\r\n  \"DateOfBirth\": \"1984-02-11\",\r\n  \"Education\": \"Finance\",\r\n  \"Email\": \"franco57@gmail.com\",\r\n  \"Firstname\": \"Franco\",\r\n  \"HospitalCity\": \"Wayne\",\r\n  \"HospitalName\": \"Chilton\",\r\n  \"HospitalPincode\": \"765432\",\r\n  \"HospitalStreet\": \"563,Daisy lane\",\r\n  \"Lastname\": \"Steward\"\r\n}\r\n\t",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -172,7 +172,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{admin_token}}",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzcyODEsImV4cCI6MTcyMjg2NjA4MX0.RyZXU_Xplv5R7iT5SrPOLQ3HT3fNh29DiL9ZAFMHFWXi993kJcJUfGe8MReaFpO_ygMtWCXe_FKULBUO8s64bw",
 									"type": "string"
 								}
 							]
@@ -302,7 +302,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODM0NTIsImV4cCI6MTcyMjUxMjI1Mn0.P7jsdI4MCLNe-rQ6hHyXVf-ES-dQDPANZGPWWcztQWfdlbEhD8Wyaw4faGiSpz5rPQZv57SpUIj3HZwAa1mj3w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzcyODEsImV4cCI6MTcyMjg2NjA4MX0.RyZXU_Xplv5R7iT5SrPOLQ3HT3fNh29DiL9ZAFMHFWXi993kJcJUfGe8MReaFpO_ygMtWCXe_FKULBUO8s64bw",
 									"type": "string"
 								}
 							]
@@ -314,7 +314,7 @@
 							"formdata": [
 								{
 									"key": "patientInfo",
-									"value": "{\"FirstName\": \"Al\",\n\"LastName\": \"Pascal\",\n\"ContactNumber\": \"9712345612\",\n\"Email\": \"alpascal@gmail.com\",\n\"Allergy\": \"soy\",\n\"FoodPreference\": \"Vegan\",\n\"CuisineCategory\":\"Indian\",\n\"DateOfBirth\": \"1986-02-14\"}\n",
+									"value": "{\"FirstName\": \"Al\",\n\"LastName\": \"Pascal\",\n\"ContactNumber\": \"9212345612\",\n\"Email\": \"alpascal2@gmail.com\",\n\"Allergy\": \"soy\",\n\"FoodPreference\": \"Vegan\",\n\"CuisineCategory\":\"Indian\",\n\"DateOfBirth\": \"1986-02-14\"}\n",
 									"type": "text"
 								}
 							]
@@ -346,7 +346,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI0ODM0NTIsImV4cCI6MTcyMjUxMjI1Mn0.P7jsdI4MCLNe-rQ6hHyXVf-ES-dQDPANZGPWWcztQWfdlbEhD8Wyaw4faGiSpz5rPQZv57SpUIj3HZwAa1mj3w",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJmcmFuY282N0BnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzcyODEsImV4cCI6MTcyMjg2NjA4MX0.RyZXU_Xplv5R7iT5SrPOLQ3HT3fNh29DiL9ZAFMHFWXi993kJcJUfGe8MReaFpO_ygMtWCXe_FKULBUO8s64bw",
 									"type": "string"
 								}
 							]
@@ -484,7 +484,7 @@
 			"name": "User",
 			"item": [
 				{
-					"name": "{{baseurl}}/logoutdietician",
+					"name": "logout",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -509,33 +509,126 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Admin Login",
-			"item": [
+				},
 				{
-					"name": "Admin Token Generation",
+					"name": "admin login",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"//To get response body -> \"token\" value\r",
-									"bodyData = pm.response.json();\r",
+									"console.log(\"In Admin Token generation\");\r",
 									"\r",
-									"token_value = bodyData.token;\r",
+									"//To get response body -> \"token\" value\r",
+									"//bodyData = pm.response.json();\r",
+									"\r",
+									"//token_value = bodyData.token;\r",
 									"\r",
 									"//To check in the console\r",
-									"console.log(\"Token: \" + token_value);\r",
+									"////console.log(\"Token: \" + token_value);\r",
 									"\r",
 									"//Setting token as global variable to use in collections\r",
-									"pm.globals.set(\"admin_token\", token_value);\r",
+									"//pm.globals.set(\"admin_token\", token_value);\r",
 									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
+									"//Setting UserLoginEmail and Password Dynamically\r",
+									"\r",
+									"//pm.collectionVariables.set(\"password\", pm.iterationData.get(\"Password\"));\r",
+									"\r",
+									"//pm.collectionVariables.set(\"userLoginEmail\", pm.iterationData.get(\"UserLoginEmail\"));\r",
+									"\r",
+									"    //To get response body -> \"token\" value\r",
+									"\r",
+									"        const jsondata=pm.response.json();\r",
+									"        token_value = jsondata.token;\r",
+									"\r",
+									"     //To check in the console\r",
+									"        console.log(\"Admin Generated Token: \" + token_value);\r",
+									"\r",
+									"     //Setting token as Collection variable to use in collections\r",
+									"        pm.collectionVariables.set(\"adminToken\", token_value);\r",
+									"\r",
+									"        //Validating token\r",
+									"        pm.test(\"Token should match the expected token\", function () {\r",
+									"     const response = pm.response.json();\r",
+									"     pm.expect(response.token).to.eql(pm.collectionVariables.get('adminToken'));\r",
+									"\r",
+									"        });\r",
+									"\r",
+									"        // Validating the Status\r",
+									"        pm.test(\"Validate Status code is 200\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"        });\r",
+									"\r",
+									"         // Validating the Response values\r",
+									"        pm.test(\"Assertion Validation for Response\", function () {\r",
+									"        const response=pm.response.json();\r",
+									"        const roles = response.roles;\r",
+									"        \r",
+									"        // Log the retrieved role for debugging\r",
+									"        console.log(\"Retrieved Role:\", roles[0]);\r",
+									"\r",
+									"        pm.expect(jsondata.type).to.eql(\"Bearer \");\r",
+									"        \r",
+									"       // Get the userId from the response and the expected userId from the environment variables\r",
+									"        let actualAdminUserId = response.userId;\r",
+									"        const expectedAdminUserId = pm.environment.get('adminUserId');\r",
+									"        console.log(\"ActualAdminUserID: \" +actualAdminUserId);\r",
+									"        console.log(\"ExpectedAdminUserId: \" +expectedAdminUserId);\r",
+									"        \r",
+									"        //pm.expect(response.userId).to.eql(pm.environment.get('admin_userId'));\r",
+									"\r",
+									"        // Convert both to strings and perform the assertion\r",
+									"        pm.expect(actualAdminUserId.toString()).to.eql(expectedAdminUserId.toString());\r",
+									"        pm.expect(jsondata.loginUserEmail).to.eql(pm.collectionVariables.get('userLoginEmail'));\r",
+									"\r",
+									"        \r",
+									"         });\r",
+									"\r",
+									"        \r",
+									"        // Response header\r",
+									"     pm.test(\"Content-Type header is present\", () => {\r",
+									"     pm.response.to.have.header(\"Content-Type\");\r",
+									"     pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+									"        });\r",
+									"\r",
+									"        \r",
+									"        const schema={\r",
+									"      \"type\": \"object\",\r",
+									"     \"properties\": {\r",
+									"      \"token\": {\r",
+									"      \"type\": \"string\"\r",
+									"     },\r",
+									"      \"type\": {\r",
+									"      \"type\": \"string\"\r",
+									"        },\r",
+									"     \"userId\": {\r",
+									"      \"type\": \"integer\"\r",
+									"     },\r",
+									"     \"loginUserEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"     },\r",
+									"      \"roles\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"string\"\r",
+									"         }\r",
+									"       ]\r",
+									"      }\r",
+									"        },\r",
+									"         \"required\": [\r",
+									"       \"token\",\r",
+									"      \"type\",\r",
+									"      \"userId\",\r",
+									"      \"loginUserEmail\",\r",
+									"      \"roles\"\r",
+									"         ]\r",
+									"      }\r",
+									"        pm.test('Validate JsonSchema Response', function() {\r",
+									"        pm.response.to.have.status(200);\r",
+									"        pm.response.to.have.jsonSchema(schema);\r",
+									"        });\r",
+									"    \r",
 									"\r",
 									"\r",
 									"\r",
@@ -549,8 +642,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"//pm.collectionVariables.set(\"password\", pm.iterationData.get//(\"Password\"));\r",
-									"//pm.collectionVariables.set(\"userLoginEmail\", pm.iterationData.get//(\"User Login Email\"));"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -565,7 +657,185 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"password\": \"test\",\r\n  \"userLoginEmail\": \"Team11@gmail.com\"\r\n}",
+							"raw": "{\r\n  \"password\": \"{{password}}\",\r\n  \"userLoginEmail\": \"{{userLoginEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dietician login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"In Dietician Token generation\");\r",
+									"\r",
+									"//Assigning Dietician Token to Collection Variables\r",
+									"\r",
+									" jsondata=pm.response.json();\r",
+									"dieticianToken_value = jsondata.token;\r",
+									"\r",
+									"     //To check in the console\r",
+									"\r",
+									"        console.log(\"Dietician Generated Token: \" + dieticianToken_value);\r",
+									"\r",
+									"     //Setting token as Collection variable to use in collections\r",
+									"\r",
+									"        pm.collectionVariables.set(\"dieticianToken\", dieticianToken_value);\r",
+									"\r",
+									"        //Validating token\r",
+									"\r",
+									"        pm.test(\"Validating Dietician Token\", function () {\r",
+									"       const response = pm.response.json();\r",
+									"     pm.expect(response.token).to.eql(pm.collectionVariables.get('dieticianToken'));\r",
+									"\r",
+									"        });\r",
+									"\r",
+									"        // Validating the Status\r",
+									"\r",
+									"        pm.test(\"Validate Status code is 200\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"        });\r",
+									"\r",
+									"         // Validating the Response values\r",
+									"\r",
+									"         pm.test(\"Assertion Validation for Response\", function () {\r",
+									"         const response=pm.response.json();\r",
+									"          const roles = response.roles;\r",
+									"         console.log(\"Retrieved Role:\", roles[0]);\r",
+									"        \r",
+									"        pm.expect(jsondata.type).to.eql(\"Bearer \");\r",
+									"\r",
+									"        // Get the userId from the response and the expected userId from the environment variables\r",
+									"\r",
+									"        let actualDieticianUserId = response.userId;\r",
+									"        let expectedDieticianUserId = pm.environment.get('dieticianId1');\r",
+									"        console.log(\"actualDieticianUserId: \" +actualDieticianUserId);\r",
+									"        console.log(\"expectedDieticianUserId: \" +expectedDieticianUserId);\r",
+									"        \r",
+									"       \r",
+									"\r",
+									"        // Convert both to strings and perform the assertion\r",
+									"\r",
+									"        pm.expect(actualDieticianUserId.toString()).to.eql(expectedDieticianUserId.toString());\r",
+									"        pm.expect(jsondata.loginUserEmail).to.eql(pm.collectionVariables.get('dieticianLoginEmail'));\r",
+									"         \r",
+									"          });\r",
+									"\r",
+									"          // Response header\r",
+									"     pm.test(\"Content-Type header is present\", () => {\r",
+									"     pm.response.to.have.header(\"Content-Type\");\r",
+									"     pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");\r",
+									"        });\r",
+									"\r",
+									"        \r",
+									"        const schema={\r",
+									"   \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"token\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"type\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"loginUserEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"roles\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": [\r",
+									"        {\r",
+									"          \"type\": \"string\"\r",
+									"        }\r",
+									"      ]\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"token\",\r",
+									"    \"type\",\r",
+									"    \"userId\",\r",
+									"    \"loginUserEmail\",\r",
+									"    \"roles\"\r",
+									"  ]\r",
+									"}\r",
+									"        pm.test('Validate JsonSchema Response', function() {\r",
+									"        pm.response.to.have.status(200);\r",
+									"        pm.response.to.have.jsonSchema(schema);\r",
+									"        });\r",
+									"\r",
+									"          //pm.execution.setNextRequest(\"update dietician\");\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"password\": \"{{dieticianPassword}}\",\r\n\"userLoginEmail\": \"{{dieticianLoginEmail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patient login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"{{patientPassword}}\",\r\n  \"userLoginEmail\": \"{{patientLoginEmail}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -587,14 +857,74 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "password",
-			"value": ""
+			"value": "test"
 		},
 		{
 			"key": "userLoginEmail",
+			"value": "Team11@gmail.com"
+		},
+		{
+			"key": "adminToken",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNzE3NTcyLCJleHAiOjE3MjI3NDYzNzJ9.W3j6L8thubMB134jhcT3eOHDknyYUshNlSom4LDZprmnr1QWmzOJquCNA1XXmhWR4d7sMCFC52qOxeiRnwxrUw",
+			"type": "string"
+		},
+		{
+			"key": "dieticianToken",
 			"value": ""
+		},
+		{
+			"key": "dieticianLoginEmail",
+			"value": "franco67@gmail.com",
+			"type": "string"
+		},
+		{
+			"key": "dieticianPassword",
+			"value": "Help77",
+			"type": "string"
+		},
+		{
+			"key": "adminUserId",
+			"value": "7053"
+		},
+		{
+			"key": "dieticianId1",
+			"value": "7254",
+			"type": "string"
+		},
+		{
+			"key": "patientEmail",
+			"value": "alpascal@gmail.com\"",
+			"type": "string"
+		},
+		{
+			"key": "patientId1",
+			"value": "111",
+			"type": "string"
 		}
 	]
 }
