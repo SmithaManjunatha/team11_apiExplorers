@@ -1,0 +1,1150 @@
+{
+	"info": {
+		"_postman_id": "27d88485-ca44-4404-ad60-b886d9fd9079",
+		"name": "Team11_APIExplorers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33908325",
+		"_collection_link": "https://team11apiexplorersjul24.postman.co/workspace/d0334863-9256-4f5f-8771-7628c87e74b7/collection/33908325-27d88485-ca44-4404-ad60-b886d9fd9079?action=share&source=collection_link&creator=33908325"
+	},
+	"item": [
+		{
+			"name": "Morbidity",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "P-retrieve all morbidities with valid url & admin token auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"In Morbidity Module\");\r",
+											"console.log(\"Retrieve All Morbidities using admin token\");\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Comparing Morbidityname value with expected value\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											" pm.collectionVariables.set(\"morbidityName\", jsonData[0].morbidityTestName);\r",
+											"\r",
+											"//storing in new variable for printing purpose\r",
+											"var morbidityname=pm.collectionVariables.get(\"morbidityName\");\r",
+											"console.log(\"Value of Morbidity name:\" ,morbidityname);\r",
+											"\r",
+											" // Check if 'morbidityTestName' exists in the response\r",
+											" console.log(\"morbidityTestName value:\", jsonData[0].morbidityTestName);\r",
+											"         pm.expect(jsonData[0].morbidityTestName).to.eql(pm.collectionVariables.get('morbidityName'));\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve all morbidities for post req",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Negative scenario with invalid request-POST\");\r",
+											"pm.test(\"Status code is 405\", function () {\r",
+											"  pm.response.to.have.status(405);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Method Not Allowed\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.error);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve all morbidities -no auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All Morbidities with No Auth\");\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.error);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve all morbidities -invalid base url",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All Morbidities with Invalid Baseurl\");\r",
+											"pm.test(\"Error code is Heroku | Application Error\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.title);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{invalid_baseurl}}/login",
+									"host": [
+										"{{invalid_baseurl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve all morbidities -Invalid EndPoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All Morbidities with Invalid Endpoint\");\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"  pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Not Found\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.error);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/Login",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"Login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "P-retrieve morbidities using valid morbidity name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve Morbidities using Morbidty Name With Valid Auth\");\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validating TestName\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											" pm.globals.set(\"morbidityName\", jsonData[0].morbidityTestName);\r",
+											"\r",
+											"//storing in new variable for printing purpose\r",
+											"var morbidityname=pm.globals.get(\"morbidityName\");\r",
+											"console.log(\"Value of Morbidity name:\" ,morbidityname);\r",
+											"\r",
+											" // Check if 'morbidityTestName' exists in the response\r",
+											" console.log(\"morbidityTestName value:\", jsonData.morbidityTestName);\r",
+											"         pm.expect(morbidityname).to.eql(pm.collectionVariables.get('morbidityName'));\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{morbidityName}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities using no auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve Morbidities using Morbidty Name With No Auth\");\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.error);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{morbidityName}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities using invalid morbidity name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve Morbidities using invalid Morbidty Name\");\r",
+											"\r",
+											"pm.test(\"Status code is 404\", function () {\r",
+											"  pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Morbidity Not found\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.errorCode);\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{admin_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{specialchar_morbidityname}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{specialchar_morbidityname}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Dietician Controller",
+					"item": [
+						{
+							"name": "P-retrieve morbidities for dietician",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All morbidities With Dietician Auth\");\r",
+											"\r",
+											"jsonData = pm.response.json();\r",
+											"pm.globals.set(\"morbidityName\", jsonData[0].morbidityTestName);\r",
+											"\r",
+											"//storing in new variable for printing purpose\r",
+											"var morbidityname=pm.globals.get(\"morbidityName\");\r",
+											"console.log(\"Value of Morbidity name:\" ,morbidityname);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaWRoaUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4NjM3MzQsImV4cCI6MTcyMjg5MjUzNH0.JHzYEPgelhNSyeHDa7EKLNnRPvyJJ2BLxxoXN_ErSoov5XjQCqL8bY7D54ZS5dkUGeS9-RnP61ga3N-bND7G9Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{morbidityName}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities for dietician with patient token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All morbidities With Patient_token Auth\");\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.token);\r",
+											"// Retrieve the global variable 'admin_token'\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{patient_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities for dietician-invalid auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All morbidities With invalid Auth\");\r",
+											"\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.token);\r",
+											"// Retrieve the global variable 'admin_token'\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{invalid_authtoken}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities for dietician-no auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve All morbidities With no Auth\");\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.token);\r",
+											"// Retrieve the global variable 'admin_token'\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "P-retrieve morbidities  for dietician using valid testname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve morbidities using valid morbidity name\");\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validating TestName\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											" pm.globals.set(\"morbidityName\", jsonData[0].morbidityTestName);\r",
+											"\r",
+											"//storing in new variable for printing purpose\r",
+											"var morbidityname=pm.globals.get(\"morbidityName\");\r",
+											"console.log(\"Value of Morbidity name:\" ,morbidityname);\r",
+											"\r",
+											" // Check if 'morbidityTestName' exists in the response\r",
+											" console.log(\"morbidityTestName value:\", jsonData.morbidityTestName);\r",
+											"         pm.expect(morbidityname).to.eql(pm.collectionVariables.get('morbidityName'));\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJuaWRoaUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4NjM3MzQsImV4cCI6MTcyMjg5MjUzNH0.JHzYEPgelhNSyeHDa7EKLNnRPvyJJ2BLxxoXN_ErSoov5XjQCqL8bY7D54ZS5dkUGeS9-RnP61ga3N-bND7G9Q",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{morbidityName}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{morbidityName}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities  for dietician using wrong testname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve morbidities using invalid morbidity name\");\r",
+											"\r",
+											"pm.test(\"Status code is 401\", function () {\r",
+											"  pm.response.to.have.status(401);\r",
+											"  //pm.response.to.have.error(Unauthorized);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Error code is Unauthorized\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											"pm.collectionVariables.set(\"Error_code\", jsonData.token);\r",
+											"// Retrieve the global variable 'admin_token'\r",
+											"var error = pm.collectionVariables.get(\"error\");\r",
+											"console.log(\"Error:\", Error);\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{dietician_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/{{invalid_morbidityname}}",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"{{invalid_morbidityname}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "N-retrieve morbidities  for dietician using partial morbidityname",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Retrieve morbidities using partial morbidity name\");\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validating TestName\", function () {\r",
+											" jsonData = pm.response.json();\r",
+											" pm.globals.set(\"morbidityName\", jsonData[0].morbidityTestName);\r",
+											"\r",
+											"//storing in new variable for printing purpose\r",
+											"var morbidityname=pm.globals.get(\"morbidityName\");\r",
+											"console.log(\"Value of Morbidity name:\" ,morbidityname);\r",
+											"\r",
+											" // Check if 'morbidityTestName' exists in the response\r",
+											" console.log(\"morbidityTestName value:\", jsonData.morbidityTestName);\r",
+											"         pm.expect(morbidityname).to.eql(pm.collectionVariables.get('morbidityName'));\r",
+											"  \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{dietician_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity/TS",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity",
+										"TS"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Patient Controller",
+					"item": [
+						{
+							"name": "N-retrieve all morbidities with patient token",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{patient_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/morbidity",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"In Collection Pre-request\");\r",
+					"console.log(pm.iterationData);\r",
+					"console.log(pm.collectionVariables);\r",
+					"\r",
+					"//Verifying and generating token in Collection level\r",
+					"console.log(\"In Collection \" + pm.collectionVariables.get(\"adminToken\"));\r",
+					"if(pm.collectionVariables.get(\"adminToken\")==\"\"|| pm.collectionVariables.get(\"adminToken\" )== null){\r",
+					"    {\r",
+					"        console.log(\"Calling Generated Admin Token\");\r",
+					"        const getTokenReq = {\r",
+					"            url: pm.environment.get(\"baseurl\") + '/login',\r",
+					"            method: 'POST',\r",
+					"            header: {'Content-Type': 'application/json'},\r",
+					"            body: {\r",
+					"                mode:'raw',\r",
+					"                raw: JSON.stringify({\r",
+					"                    \"userLoginEmail\": pm.environment.get(\"userLoginEmail\"), \r",
+					"                    \"password\": pm.environment.get(\"password\") \r",
+					"                    \r",
+					"                })\r",
+					"            }\r",
+					"        };\r",
+					"        console.log( getTokenReq.url);\r",
+					"    pm.sendRequest(getTokenReq,function(err, response){\r",
+					"        if(err){\r",
+					"            console.log(err)\r",
+					"        }else{\r",
+					"            console.log(\"Collection Response Token: \" + response.json().token)\r",
+					"            pm.collectionVariables.set(\"adminToken\",response.json().token);\r",
+					"        }\r",
+					"    });\r",
+					"    }\r",
+					"\r",
+					"}\r",
+					"\r",
+					"//Retrieve and assign requestData from Json to variables if not already set\r",
+					"\r",
+					"const requestData = pm.variables.get(\"requestData\");\r",
+					"\r",
+					"if(typeof requestData !== 'object' || requestData === null){\r",
+					"    pm.variables.set(\"requestData\", pm.iterationData.get(\"requests\"));\r",
+					"\r",
+					"}\r",
+					"\r",
+					"// Update requestData variable\r",
+					"const updatedRequestData = pm.variables.get('requestData');\r",
+					"\r",
+					"// Validate if requestData is properly set and not empty\r",
+					"if (typeof updatedRequestData !== 'object' || updatedRequestData === null || Object.keys(updatedRequestData).length === 0) {\r",
+					"    console.log('Json data set is empty');\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Find the data for the current request\r",
+					"const currentRequest = updatedRequestData.find(({ reqname }) => reqname === pm.info.requestName);\r",
+					"\r",
+					"if (!currentRequest) {\r",
+					"    console.log(`Request: ${pm.info.requestName} has no data.`);\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Process the current request's data\r",
+					"const variables = currentRequest.data.shift();\r",
+					"if (variables) {\r",
+					"    Object.entries(variables).forEach(([key, value]) => {\r",
+					"        pm.variables.set(key, value);\r",
+					"\r",
+					"        console.log(\"key\" + key);\r",
+					"        console.log(\"Value\" + value);\r",
+					"    });\r",
+					"\r",
+					"    // Update requestData variable with possibly modified data\r",
+					"    pm.variables.set('requestData', updatedRequestData);\r",
+					"\r",
+					"    // Set the next request if there is more data to process\r",
+					"    if (currentRequest.data.length > 0) {\r",
+					"        pm.execution.setNextRequest(pm.info.requestName);\r",
+					"    }\r",
+					"}\r",
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "dietician_token",
+			"value": ""
+		},
+		{
+			"key": "invalid_baseurl",
+			"value": "https://dietician-july-api-hackathon-80f2590665cdc.herokuapp.com/dietician"
+		},
+		{
+			"key": "invalid_authtoken",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIyNjIxNTY5LCJleHAiOjE3MjI2NTAzNjl9.6BBWUGJbLBWrE9TErDEJ3pkYPLVUvqQpZbORH3sfdTaJf3ZRtXEJpopKQwoVzmfgh4s3E37bVCSzepIVYvJoJA"
+		},
+		{
+			"key": "morbidityName",
+			"value": ""
+		},
+		{
+			"key": "Error_code",
+			"value": ""
+		},
+		{
+			"key": "admin_token",
+			"value": ""
+		},
+		{
+			"key": "adminToken",
+			"value": ""
+		}
+	]
+}
