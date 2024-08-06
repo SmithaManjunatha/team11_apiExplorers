@@ -1,0 +1,66 @@
+[
+	{
+		"requests": [
+			{
+				"reqname": "create new dietician",
+				"data": [
+					{
+						"contactNumber": "$RAN",
+						"dateOfBirth": "$RAN",
+						"email": "$RAN",
+						"education": "MCA",
+						"firstName": "Mary",
+						"hospitalCity": "sing",
+						"hospitalName": "St.Mary's hospital",
+						"hospitalPincode": "123456",
+						"hospitalStreet": "song street",
+						"lastName": "Joseph"
+					},
+					{
+						"contactNumber": "$RAN",
+						"dateOfBirth": "$RAN",
+						"email": "$RAN",
+						"education": "Business23",
+						"firstName": "Nisha",
+						"hospitalCity": "singer",
+						"hospitalName": "string dance",
+						"hospitalPincode": "123400",
+						"hospitalStreet": "string lane",
+						"lastName": "white"
+					}
+				]
+			},
+			{
+				"reqname": "update dietician",
+				"data": [
+					{
+						"education": "Fun231",
+						"firstName": "Nisha1",
+						"hospitalCity": "singer1",
+						"hospitalName": "string dance1",
+						"hospitalPincode": "123450",
+						"hospitalStreet": "string1 lane",
+						"lastName": "white23"
+					}
+				]
+			},
+			{
+				"reqname": "create new patient",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Adamw",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "adam1@gmail.com",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "1979-10-14"
+						}
+					}
+				]
+			}
+		]
+	}
+]
