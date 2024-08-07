@@ -14,19 +14,21 @@
 						"hospitalName": "St.Mary's hospital",
 						"hospitalPincode": "123456",
 						"hospitalStreet": "song street",
-						"lastName": "Joseph"
+						"lastName": "Joseph",
+						"statusCode": 201
 					},
 					{
 						"contactNumber": "$RAN",
 						"dateOfBirth": "$RAN",
 						"email": "$RAN",
-						"education": "Business23",
+						"education": "Business",
 						"firstName": "Nisha",
 						"hospitalCity": "singer",
 						"hospitalName": "string dance",
 						"hospitalPincode": "123400",
 						"hospitalStreet": "string lane",
-						"lastName": "white"
+						"lastName": "white",
+						"statusCode": 201
 					}
 				]
 			},
@@ -34,13 +36,13 @@
 				"reqname": "update dietician",
 				"data": [
 					{
-						"education": "Fun231",
-						"firstName": "Nisha1",
-						"hospitalCity": "singer1",
-						"hospitalName": "string dance1",
+						"education": "Funupdate",
+						"firstName": "Nishaupdate",
+						"hospitalCity": "singerupdte",
+						"hospitalName": "string danceupdate",
 						"hospitalPincode": "123450",
 						"hospitalStreet": "string1 lane",
-						"lastName": "white23"
+						"lastName": "whiteupdate"
 					}
 				]
 			},
@@ -49,15 +51,292 @@
 				"data": [
 					{
 						"patientInfo": {
-							"FirstName": "Adamw",
+							"FirstName": "Adam",
 							"LastName": "alllen",
 							"ContactNumber": "$RAN",
-							"Email": "adam1@gmail.com",
+							"Email": "$RAN",
 							"Allergy": "pecan",
 							"FoodPreference": "VEGAN",
 							"CuisineCategory": "indian",
-							"DateOfBirth": "1979-10-14"
-						}
+							"DateOfBirth": "$RAN"
+						},
+						"statusCode": 201
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Bose",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "PISTACHO",
+							"FoodPreference": "NonVeg",
+							"CuisineCategory": "Rajasthani",
+							"DateOfBirth": "$RAN"
+						},
+						"statusCode": 201
+					}
+				]
+			},
+			
+			{
+				"reqname": "N-create new patient with invalid endpoint",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"statusCode": 404
+					}
+				]
+			},
+			{
+				"reqname": "N - update unique fields with duplicate values",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "alllen",
+							"ContactNumber": "$DUP",
+							"Email": "$DUP",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$DUP"
+						},
+						"statusCode": 400
+					}
+				]
+			},
+			{
+				"reqname": "N-create new patient with invalid values",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Adam123",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "FirstName with numbers",
+						"errorMsg": "FirstName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam#$%",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "FirstName with spl chars",
+						"errorMsg": "FirstName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam ",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "FirstName with space",
+						"errorMsg": "FirstName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "",
+							"LastName": "alllen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "FirstName with empty values",
+						"errorMsg": "firstName : User First Name is Mandatory!  \n ",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "alllen123",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "LastName with numbers",
+						"errorMsg": "LastName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "alllen%^&",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "LastName with spl chars",
+						"errorMsg": "LastName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "alllen ",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "LastName with space",
+						"errorMsg": "LastName should only contain Alphabets",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "pecan",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "LastName with empty values",
+						"errorMsg": "lastName : User Last Name is Mandatory!  \n ",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "allen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "Allergy with empty values",
+						"errorMsg": "allergy : Invalid Allergy Category: Must be one of the categories  -[soy, almond, walnut, pistachio, sesame, hazelnut, pecan, cashew, peanut, egg, milk, none]  Provided value:   \n allergy : Allergy information required!  \n ",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "allen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "nut",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "indian",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "Allergy without expected values",
+						"errorMsg": "allergy : Invalid Allergy Category: Must be one of the categories  -[soy, almond, walnut, pistachio, sesame, hazelnut, pecan, cashew, peanut, egg, milk, none]  Provided value: nut  \n ",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "allen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "None",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "CuisineCategory with empty values",
+						"errorMsg": "cuisineCategory : Cuisine category required!  \n cuisineCategory : Invalid Cuisine Category: Must be one of the categories  -[indian, south indian, rajasthani, punjabi, bengali, orissa, gujarati, maharashtrian, andhra, kerala, goan, kashmiri, himachali, tamil nadu, karnataka, sindhi, chhattisgarhi, madhya pradesh, assamese, manipuri, tripuri, sikkimese, mizo, arunachali, uttarakhand, haryanvi, awadhi, bihari, uttar pradesh, delhi, north indian, italian, french, arabic, lebanese, thai, mexican, american]  Provided value:   \n ",
+						"statusCode": 400
+					},
+					{
+						"patientInfo": {
+							"FirstName": "Adam",
+							"LastName": "allen",
+							"ContactNumber": "$RAN",
+							"Email": "$RAN",
+							"Allergy": "soy",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "Kash",
+							"DateOfBirth": "$RAN"
+						},
+						"invalidIP": "CuisineCategory without expected values",
+						"errorMsg": "cuisineCategory : Invalid Cuisine Category: Must be one of the categories  -[indian, south indian, rajasthani, punjabi, bengali, orissa, gujarati, maharashtrian, andhra, kerala, goan, kashmiri, himachali, tamil nadu, karnataka, sindhi, chhattisgarhi, madhya pradesh, assamese, manipuri, tripuri, sikkimese, mizo, arunachali, uttarakhand, haryanvi, awadhi, bihari, uttar pradesh, delhi, north indian, italian, french, arabic, lebanese, thai, mexican, american]  Provided value: Kash  \n ",
+						"statusCode": 400
+					}
+				]
+			},
+			{
+				"reqname": "update patient by patient id",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Jennifer",
+							"LastName": "Daniels",
+							"Email": "Jennifer@gmail.com",
+							"Allergy": "SESAME",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "italian",
+							"DateOfBirth": "1990-12-03"
+						},
+						"statusCode": 200
+					}
+				]
+			},
+			{
+				"reqname": "add new reports with vitals for existing patient",
+				"data": [
+					{
+						"patientInfo": {
+							"FirstName": "Jennifer",
+							"LastName": "Daniel",
+							"Email": "Jennifer@gmail.com",
+							"Allergy": "SESAME",
+							"FoodPreference": "VEGAN",
+							"CuisineCategory": "italian",
+							"DateOfBirth": "1990-12-03"
+						},
+						"vitals": {
+							"Weight": 101.9,
+							"Height": 40.0,
+							"Temperature": 99.0,
+							"SP": 9,
+							"DP": 8
+						},
+						"statusCode": 200
 					}
 				]
 			}
