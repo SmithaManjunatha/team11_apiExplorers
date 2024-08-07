@@ -1,0 +1,948 @@
+{
+	"info": {
+		"_postman_id": "2ce04a93-4fbe-4884-b0ee-824ed7f1af4c",
+		"name": "Team11 Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37118516",
+		"_collection_link": "https://team11apiexplorersjul24.postman.co/workspace/Teju_APIHackathon_jul~60b1964d-e6aa-4a31-a576-5efae57d4adf/collection/37118516-2ce04a93-4fbe-4884-b0ee-824ed7f1af4c?action=share&source=collection_link&creator=37118516"
+	},
+	"item": [
+		{
+			"name": "Dietician",
+			"item": [
+				{
+					"name": "create dietician",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// console.log(\"In Create Dietician\");\r",
+									"// // Assigning userloginEmail and password to collection Variables\r",
+									"\r",
+									"// bodyData = pm.response.json();\r",
+									"// console.log(\"Response\" + bodyData);\r",
+									"\r",
+									"// //Creating Dietician Object\r",
+									"// let dietician = new Object();\r",
+									"// dietician.dieticianLoginEmail = bodyData.Email;\r",
+									"// dietician.dieticianPassword = bodyData.loginPassword;\r",
+									"// dietician.dieticianId = bodyData.id;\r",
+									"// console.log(dietician);\r",
+									"\r",
+									"// //Verifying dieticain array in collection variable\r",
+									"// let dieticians = pm.collectionVariables.get(\"dieticians\");\r",
+									"\r",
+									"// //Adding dietician\r",
+									"// if(dieticians) {\r",
+									"//  dieticians[dieticians.length]  = dietician;\r",
+									"//   pm.collectionVariables.set(\"dieticians\", dieticians);\r",
+									"// }\r",
+									"// else{\r",
+									"//     let tempDieticians = [dietician];\r",
+									"//     console.log(\"tempDieticiation \" + tempDieticians);\r",
+									"//     console.log(tempDieticians);\r",
+									"//     pm.collectionVariables.set(\"dieticians\", tempDieticians);\r",
+									"// }\r",
+									"\r",
+									"// console.log(pm.collectionVariables.get(\"dieticians\"));\r",
+									"// console.log(\"dieticians array: \" );\r",
+									"// //console.log(dieticians);\r",
+									"\r",
+									"// // Assigning DieticianId1 and DieticiantId2 to collection variables\r",
+									"// let dieticianId1 = pm.collectionVariables.get(\"dieticianId1\");\r",
+									"\r",
+									"// if (!dieticianId1){\r",
+									"//     pm.collectionVariables.set(\"dieticianId1\", bodyData.id);   \r",
+									"//     console.log(\"dieticainId1\" +pm.collectionVariables.get(\"dieticianId1\") ) \r",
+									"    \r",
+									"// }else {\r",
+									"//         pm.collectionVariables.set(\"dieticianId2\" , bodyData.id); \r",
+									"//         console.log(\"dieticianId2\" +pm.collectionVariables.get(\"dieticianId2\") )   \r",
+									"// }\r",
+									"\r",
+									"// pm.execution.setNextRequest(\"dietician login\");\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"status code is 201 created\",function(){\r",
+									"           pm.response.to.have.status(201);\r",
+									" });\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Variable generation\r",
+									"\r",
+									"var moment = require('moment');\r",
+									"\r",
+									"contactNumber = pm.variables.get(\"contactNumber\");\r",
+									"dateOfBirth = pm.variables.get(\"dateOfBirth\");\r",
+									"email = pm.variables.get(\"email\");\r",
+									"\r",
+									"if(contactNumber === \"$RAN\"){\r",
+									"\r",
+									"pm.variables.set(\"contactNumber\", pm.variables.replaceIn('{{$randomPhoneNumber}}').replaceAll(\"-\",\"\"));\r",
+									"}\r",
+									"\r",
+									"if(dateOfBirth === \"$RAN\"){\r",
+									"pm.variables.set(\"dateOfBirth\", pm.variables.replaceIn('{{$isoTimestamp}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									"if(email === \"$RAN\"){\r",
+									"pm.variables.set(\"email\" , pm.variables.replaceIn('{{$randomEmail}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Firstname\": \"{{firstname}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastname}}\"\r\n \r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dietician login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// console.log(\"In dietician login\");\r",
+									"\r",
+									"// //Retrieving dietician array from collection\r",
+									"\r",
+									"// let dieticianArray = pm.collectionVariables.get(\"dieticians\");\r",
+									"// console.log(\"dieticianArray \" + dieticianArray);\r",
+									"\r",
+									"\r",
+									"// if(dieticianArray.length>0) {\r",
+									"//    dietician = dieticianArray.shift();\r",
+									"//    console.log(dietician);\r",
+									"//     pm.variables.set(\"dieticianLoginEmail\", dietician.dieticianLoginEmail);\r",
+									"//     pm.variables.set(\"dieticianPassword\", dietician.dieticianPassword);\r",
+									"//     pm.variables.set(\"dieticianId\", dietician.dieticianId);\r",
+									"\r",
+									"// }\r",
+									"\r",
+									"// if (dieticianArray.length>1) {\r",
+									"//   //  pm.collectionVariables.set(\"diaticians\",dieticainArray);\r",
+									"//     pm.execution.setNextRequest(\"dietician login\");\r",
+									"// }else{\r",
+									"\r",
+									"// //pm.execution.setNextRequest(\"update dieticain\");\r",
+									"// }"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"In Dietician Token generation\");\r",
+									"\r",
+									"//Assigning Dietician Token to Collection Variables\r",
+									"\r",
+									"bodyData = pm.response.json();\r",
+									"console.log(bodyData);\r",
+									"let dieticianIndex = pm.collectionVariables.get(\"dieticianIndex\");\r",
+									"if(!pm.collectionVariables.get(\"dieticianToken\")){\r",
+									"    pm.collectionVariables.set(\"dieticianToken\",bodyData.token);\r",
+									"}else{\r",
+									"     pm.collectionVariables.set(\"dieticianToken1\",bodyData.token);\r",
+									"}\r",
+									"\r",
+									"//pm.execution.setNextRequest(\"create new patient\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"password\": \"Power78\",\r\n        \"userLoginEmail\": \"apiexplorerdiet@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "N-Invalid create dietician",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//Variable generation\r",
+									"\r",
+									"var moment = require('moment');\r",
+									"\r",
+									"contactNumber = pm.variables.get(\"contactNumber\");\r",
+									"dateOfBirth = pm.variables.get(\"dateOfBirth\");\r",
+									"email = pm.variables.get(\"email\");\r",
+									"\r",
+									"if(contactNumber === \"$RAN\"){\r",
+									"\r",
+									"pm.variables.set(\"contactNumber\", pm.variables.replaceIn('{{$randomPhoneNumber}}').replaceAll(\"-\",\"\"));\r",
+									"}\r",
+									"\r",
+									"if(dateOfBirth === \"$RAN\"){\r",
+									"pm.variables.set(\"dateOfBirth\", pm.variables.replaceIn('{{$isoTimestamp}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									"if(email === \"$RAN\"){\r",
+									"pm.variables.set(\"email\" , pm.variables.replaceIn('{{$randomEmail}}'));\r",
+									"\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"status code 400 Bad Request\",function(){\r",
+									"pm.response.to.have.status(400);\r",
+									"     });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Firstname\": \"{{firstname}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastname}}\"\r\n \r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "In update Dietician",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// pm.test(\"status code 400 Bad Request\",function(){\r",
+									"// pm.response.to.have.status(400);\r",
+									"//     });\r",
+									"\r",
+									"pm.test(\"Status code is either 200 or 400\", function () {\r",
+									"    var statusCode = pm.response.code;\r",
+									"    pm.expect(statusCode).to.be.oneOf([200, 400,405]);\r",
+									"\r",
+									"    if (statusCode === 200) {\r",
+									"        console.log(\"The request was successful with status code 200.\");\r",
+									"    } else if (statusCode === 400) {\r",
+									"        console.log(\"The request failed with status code 400.\");\r",
+									"    }\r",
+									"    else if (statusCode === 405) \r",
+									"        console.log(\"The request method is not allowed with status code 405.\");\r",
+									"    \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{  \"dieticianid\":\"{{dieticianid1}}\",\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Firstname\": \"{{firstname}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastname}}\"\r\n \r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valid update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									" pm.test(\"Status code is either 200 or 400\", function () {\r",
+									"    var statusCode = pm.response.code;\r",
+									"    pm.expect(statusCode).to.be.oneOf([200, 400,405]);\r",
+									"\r",
+									"    if (statusCode === 200) {\r",
+									"        console.log(\"The request was successful with status code 200.\");\r",
+									"    } else if (statusCode === 400) {\r",
+									"        console.log(\"The request failed with status code 400.\");\r",
+									"    }\r",
+									"    else if (statusCode === 405) \r",
+									"        console.log(\"The request method is not allowed with status code 405.\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Firstname\": \"{{firstname}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastname}}\"\r\n \r\n}\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "P-all dietician details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const responsejson=pm.response.json();\r",
+									"console.log(responsejson);\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "N-404  with invalid id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"const responsejson = pm.response.json();\r",
+									"console.log(responsejson);\r",
+									"const expectederrormessage = \"Dietician id not found\";\r",
+									"\r",
+									"pm.test(\"Response contains error message\", function () {\r",
+									"pm.expect(responsejson).to.have.property('errormessage');\r",
+									"pm.expect(responsejson.errormessage).to.eql(expectederrormessage);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/7888999",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"7888999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retrieve with dieticianid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// pm.test(\"Body matches string\", function () {\r",
+									"//     pm.expect(pm.response.text()).to.include(\"Firstname\");\r",
+									"// });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/{{dieticianId1}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"{{dieticianId1}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "N-retrieve with invalid id",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const expectederrorcode=\"illegal arguement\";\r",
+									"// const expectedmessagesubstring=\"for input string: \\\"{{dieticianIdy}}\\\"\";\r",
+									"\r",
+									"// const responsejson=pm.response.json();\r",
+									"// pm.test(\"status code is 400 bad request\",function(){\r",
+									"//            pm.response.to.have.status(400);\r",
+									"//  });\r",
+									" \r",
+									" \r",
+									"//  pm.test(\"response contains  errormessage\",function(){\r",
+									"//     pm.expect(responsejson.errormessage).to.eql(expectederrormessage);\r",
+									"//  })\r",
+									"\r",
+									"//  console.log(responsejson);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletedietician",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/1582",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								"1582"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create dietician 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \"id\"    : \"{{dieticianid1}}\",\r\n  \"ContactNumber\": \"{{contactNumber}}\",\r\n  \"DateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"Education\": \"{{education}}\",\r\n  \"Email\": \"{{email}}\",\r\n  \"Firstname\": \"{{firstname}}\",\r\n  \"HospitalCity\": \"{{hospitalCity}}\",\r\n  \"HospitalName\": \"{{hospitalName}}\",\r\n  \"HospitalPincode\": \"{{hospitalPincode}}\",\r\n  \"HospitalStreet\": \"{{hospitalStreet}}\",\r\n  \"Lastname\": \"{{lastname}}\"\r\n \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "N-with invalid endpoints",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{adminToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "N-unauthorized",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401 unauthorized\", function () {\r",
+									"\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/dietician",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"dietician"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "admin login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"test\",\r\n  \"userLoginEmail\": \"Team11@gmail.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/login",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(\"In Collection Pre-request\");\r",
+					"console.log(pm.iterationData);\r",
+					"console.log(pm.collectionVariables);\r",
+					"\r",
+					"//Verifying and generating token in Collection level\r",
+					"console.log(\"In Collection \" + pm.collectionVariables.get(\"adminToken\"));\r",
+					"if(pm.collectionVariables.get(\"adminToken\")==\"\"|| pm.collectionVariables.get(\"adminToken\" )== null){\r",
+					"    {\r",
+					"        console.log(\"Calling Generated Admin Token\");\r",
+					"        const getTokenReq = {\r",
+					"            url: pm.environment.get(\"baseurl\") + '/login',\r",
+					"            method: 'POST',\r",
+					"            header: {'Content-Type': 'application/json'},\r",
+					"            body: {\r",
+					"                mode:'raw',\r",
+					"                raw: JSON.stringify({\r",
+					"                    \"userLoginEmail\": pm.environment.get(\"userLoginEmail\"), \r",
+					"                    \"password\": pm.environment.get(\"password\") \r",
+					"                    \r",
+					"                })\r",
+					"            }\r",
+					"        };\r",
+					"        console.log( getTokenReq.url);\r",
+					"    pm.sendRequest(getTokenReq,function(err, response){\r",
+					"        if(err){\r",
+					"            console.log(err)\r",
+					"        }else{\r",
+					"            console.log(\"Collection Response Token: \" + response.json().token)\r",
+					"            pm.collectionVariables.set(\"adminToken\",response.json().token);\r",
+					"        }\r",
+					"    });\r",
+					"    }\r",
+					"\r",
+					"}\r",
+					"\r",
+					"//Retrieve and assign requestData from Json to variables if not already set\r",
+					"\r",
+					"const requestData = pm.variables.get(\"requestData\");\r",
+					"\r",
+					"if(typeof requestData !== 'object' || requestData === null){\r",
+					"    pm.variables.set(\"requestData\", pm.iterationData.get(\"requests\"));\r",
+					"\r",
+					"}\r",
+					"\r",
+					"// Update requestData variable\r",
+					"const updatedRequestData = pm.variables.get('requestData');\r",
+					"\r",
+					"// Validate if requestData is properly set and not empty\r",
+					"if (typeof updatedRequestData !== 'object' || updatedRequestData === null || Object.keys(updatedRequestData).length === 0) {\r",
+					"    console.log('Json data set is empty');\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Find the data for the current request\r",
+					"const currentRequest = updatedRequestData.find(({ reqname }) => reqname === pm.info.requestName);\r",
+					"\r",
+					"if (!currentRequest) {\r",
+					"    console.log(`Request: ${pm.info.requestName} has no data.`);\r",
+					"    return;\r",
+					"}\r",
+					"\r",
+					"// Process the current request's data\r",
+					"const variables = currentRequest.data.shift();\r",
+					"if (variables) {\r",
+					"    Object.entries(variables).forEach(([key, value]) => {\r",
+					"        pm.variables.set(key, value);\r",
+					"\r",
+					"        console.log(\"key\" + key);\r",
+					"        console.log(\"Value\" + value);\r",
+					"    });\r",
+					"\r",
+					"    // Update requestData variable with possibly modified data\r",
+					"    pm.variables.set('requestData', updatedRequestData);\r",
+					"\r",
+					"    // Set the next request if there is more data to process\r",
+					"    if (currentRequest.data.length > 0) {\r",
+					"        pm.execution.setNextRequest(pm.info.requestName);\r",
+					"    }\r",
+					"}\r",
+					"\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "adminToken",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtMTFAZ21haWwuY29tIiwiaWF0IjoxNzIzMDM2NTU5LCJleHAiOjE3MjMwNjUzNTl9.dHsB0cNRG5VWx8aVA5Q7ajQ212x7ZkPP2PBT-uaafzi6wVzjYXCE3sQtKGvGjK5BTYycnDWsoGa4HwSe2TFsgA",
+			"type": "string"
+		},
+		{
+			"key": "dieticianToken",
+			"value": ""
+		},
+		{
+			"key": "dieticians",
+			"value": ""
+		},
+		{
+			"key": "dieticianId1",
+			"value": ""
+		}
+	]
+}
