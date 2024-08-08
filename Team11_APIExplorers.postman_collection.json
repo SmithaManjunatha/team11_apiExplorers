@@ -6746,7 +6746,7 @@
 					"\r",
 					"//Collection variable clean up\r",
 					"\r",
-					"//pm.collectionVariables.clear();"
+					"pm.collectionVariables.clear();"
 				]
 			}
 		}
